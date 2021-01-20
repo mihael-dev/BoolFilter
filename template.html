@@ -1,0 +1,24 @@
+<div style="height:100%;width:100%;display: block;overflow:auto;" class="ng-scope">
+    <div>
+        <span style="font-weight: bold;">Enter Boolean Expression:</span>
+        <input type="text" ng-attr-placeholder="{{layout.searchExpression}}" ng-model="name" id="term" class="lui-input textarea-bool"></input> <!--ng-change="getPreview()"-->
+    </div>
+
+
+    <br>
+    <div style="text-align: right;">
+
+
+        <button title="Clear {{layout.selectionfieldName}} and Boolean Expression input" class="lui-button" ng-click="clearFilter();">
+            <span>Clear </span>
+            <span style="font-size: 13px;" class="lui-icon lui-icon--remove"></span>
+        </button>
+        <button title="Submit Boolean Expression" class="lui-button" ng-click="setFilter();">
+            <span>Submit </span>
+            <span style="font-size: 13px;" class="lui-icon lui-icon--tick"></span>
+        </button>
+
+    </div>
+
+</div>
+<div id="messages"></div>
