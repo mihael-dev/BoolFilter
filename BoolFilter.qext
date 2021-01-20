@@ -1,5 +1,5 @@
 {
-	"name": "Bool Filter",
+	"name": "BoolFilter",
 	"description": "Listbox visualization template",
 	"icon": "list",
 	"type": "visualization",
