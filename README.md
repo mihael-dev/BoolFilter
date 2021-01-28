@@ -13,6 +13,8 @@ The prerequisite is that a 1:n or m:n relationship exists in the data model.
 
 </br>
 
+![BoolFilter.PNG](https://raw.githubusercontent.com/mihael-dev/DemoData/main/BoolFilter/BoolFilter.PNG)
+
 
 </br></br>
 
