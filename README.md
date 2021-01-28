@@ -4,7 +4,7 @@
 This Qlik Sense Extension enables users to apply a boolean expression as selection on a field. 
 </br>
 The prerequisite is that a 1:n or m:n relationship exists in the data model.
-</br>
+</br></br></br>
 Example use case:
 - select all customers that bought product (A AND B) AND NOT C
 - select all patients that had treatment A OR (B AND C AND NOT D)  
