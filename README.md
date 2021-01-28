@@ -6,8 +6,8 @@ The entered Boolean expression is transformed to a Qlik search expression and ap
 
 
 Example use case:
-- select all customers that bought Product (A AND B) AND NOT C
-- select all patients that had Treatment A OR (B AND C AND NOT D)  
+- select all customers that bought product (A AND B) AND NOT C
+- select all patients that had treatment A OR (B AND C AND NOT D)  
 
 The prerequisite is that a 1:n or m:n relationship exists in the data model.
 
