@@ -1,7 +1,7 @@
 # BoolFilter
 
 
-This Qlik Sense Extension enables a business user to apply more complex selection on one field. 
+This Qlik Sense Extension enables a business user to apply more complex selection on a field. 
 The prerequisite is that a 1:n or m:n relationship exists in the data model.
 
 Example use case:
