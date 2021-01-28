@@ -32,32 +32,68 @@ define( ["qlik", "text!./template.html", "text!./style.css", "jquery" ],
 									SelectionFieldName: {
 										type: 'string',
 										ref: 'selectionfieldName',
-										label: 'Selection Field Name',
-										expression: 'optional',
+										label: 'Selection field name',
+										expression: 'always',
 										defaultValue: 'Customer'
 									},	
 									FieldName: {
 										type: 'string',
 										ref: 'fieldName',
-										label: 'Search Field Name',
-										expression: 'optional',
-										defaultValue: 'Customer'
-									},								
+										label: 'Search field name',
+										expression: 'always',
+										defaultValue: 'Product'
+									},/*								
 									Expression : {
 										type: 'string',
 										ref: 'boolExpression',
-										label: 'Generated Expression',
+										label: 'Generated expression',
+										expression: 'always',
+										defaultValue: ""		
+									},*/
+									FieldTitel:	
+									{
+										type: 'string',
+										ref: 'fieldTitel',
+										label: 'Input field titel',
 										expression: 'optional',
-										defaultValue: "='count($1 Customer) > 0' "		
+										defaultValue: 'Enter boolean expression:'	
 									},
 									DefaultExpression:	
 									{
 										type: 'string',
 										ref: 'searchExpression',
-										label: 'Search String Placeholder',
+										label: 'Search string placeholder',
 										expression: 'optional',
 										defaultValue: 'e.g. (123+456)/789'	
+									},
+									Operator_AND:	
+									{
+										type: 'string',
+										ref: 'operator.and',
+										label: 'Operator AND',
+										//expression: 'always',
+										defaultValue: '*',
+										maxlength: 1
+									},
+									Operator_OR:	
+									{
+										type: 'string',
+										ref: 'operator.or',
+										label: 'Operator OR',
+										//expression: 'always',
+										defaultValue: '+',
+										maxlength: 1	
+									},
+									Operator_ANDNOT:	
+									{
+										type: 'string',
+										ref: 'operator.andnot',
+										label: 'Operator AND NOT',
+										//expression: 'always',
+										defaultValue: "-",
+										maxlength: 1
 									}
+
 								}	
 							}
 						}
@@ -97,11 +133,19 @@ define( ["qlik", "text!./template.html", "text!./style.css", "jquery" ],
 				
 
 				function createSelectionQuery() {
-					var query = getSelectionQuery();
+
+					let searchfieldName =  $scope.layout.fieldName;
+					if (!(searchfieldName.startsWith('[') && searchfieldName.endsWith(']'))) {
+						searchfieldName = '[' + searchfieldName + ']';
+					}
+
+
+
+					var query = getSelectionQuery(searchfieldName);
 					
 					if (query != null && query != "") { 
 						
-						queryWithNot = query + " AND " + "(sum({<" + $scope.layout.fieldName + "=P(" + $scope.layout.fieldName + ")>} 0) = 0)";
+						queryWithNot = query + " AND " + "(sum({<" + searchfieldName + "=P(" + searchfieldName + ")>} 0) = 0)";
 					} else {
 						queryWithNot = "1=1";
 					}
@@ -109,22 +153,34 @@ define( ["qlik", "text!./template.html", "text!./style.css", "jquery" ],
 					return queryWithNot
 				}
 				
-				function getSelectionQuery() {
+				function getSelectionQuery(searchfieldName) {
 					var codeString = $scope.name;
 					
-					var codesS = codeString.replace(/[+]/g, '|').replace(/[-]/g, '|').replace(/[/]/g, '|').replace(/[(]/g, '|').replace(/[)]/g, '|').replace(/\s\s+/g, '|'); 
 					
+					var regex_and = new RegExp('[' + $scope.layout.operator.and  + ']', "g");
+					var regex_or = new RegExp('[' + $scope.layout.operator.or + ']', "g");
+					var regex_andnot = new RegExp('[' + $scope.layout.operator.andnot + ']',"g");
+
+
+					var boolExpression = 'count($1 ' + searchfieldName + ') > 0';
+
+					//var codesS = codeString.replace(/[+]/g, '|').replace(/[-]/g, '|').replace(/[/]/g, '|').replace(/[(]/g, '|').replace(/[)]/g, '|').replace(/\s\s+/g, '|'); 
+					
+					var codesS = codeString.replace(regex_and, '|').replace(regex_andnot, '|').replace(regex_or, '|').replace(/[(]/g, '|').replace(/[)]/g, '|').replace(/\s\s+/g, '|'); 
 					
 					var query = codeString;
 					var codes = removeDuplicates(codesS.trim().split("|"));
 					
 					
 					query = query.indexOf('-') == 0 ? query.replace('-', 'NOT ') : query;
-					query = query.replace(/[+]/g, ' AND ' ).replace(/[-]/g, ' AND NOT ').replace(/[/]/g, ' OR ');
+
+
+					//query = query.replace(/[+]/g, ' AND ' ).replace(/[-]/g, ' AND NOT ').replace(/[/]/g, ' OR ');
+					query = query.replace(regex_and, ' AND ' ).replace(regex_andnot, ' AND NOT ').replace(regex_or, ' OR ');
 					
-					
+				
 					for (var i=0; i < codes.length; i++) {
-						query = query.replace(new RegExp("\\b" + codes[i] + "\\b", "g"),  "(" + $scope.layout.boolExpression.replace("$1", "{<" + $scope.layout.fieldName + "={'" + codes[i] + "'}" + ">}") + ")");
+						query = query.replace(new RegExp("\\b" + codes[i] + "\\b", "g"),  "(" + boolExpression.replace("$1", "{<" + searchfieldName + "={'" + codes[i] + "'}" + ">}") + ")");
 					}
 					
 					
