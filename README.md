@@ -15,9 +15,6 @@ The prerequisite is that a 1:n or m:n relationship exists in the data model.
 ![BoolFilter.PNG](https://raw.githubusercontent.com/mihael-dev/DemoData/main/BoolFilter/BoolFilter.PNG)
 
 </br></br>
-![Dimensional Lines.PNG](https://raw.githubusercontent.com/mihael-dev/High-Density-Scatter/main/demo/Dimensional%20Lines.PNG)
-
-</br></br>
 
 **Configuration:**
 
