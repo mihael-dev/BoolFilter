@@ -40,7 +40,7 @@ The entered boolean expression is transformed to a Qlik search expression and ap
 </br></br>
 
 **Known Limitation**
-- Limited user support for entering the boolean query. Currently a plain input field is available.
+- Limited user support for entering the boolean expression. Currently a plain input field is available.
 
 
 
