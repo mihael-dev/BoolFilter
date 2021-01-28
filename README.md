@@ -12,7 +12,7 @@ Example use case:
 The prerequisite is that a 1:n or m:n relationship exists in the data model.
 
 </br>
-![Reference Line&Rect.PNG](https://raw.githubusercontent.com/mihael-dev/DemoData/main/BoolFilter/BoolFilter.PNG)
+![BoolFilter.PNG](https://raw.githubusercontent.com/mihael-dev/DemoData/main/BoolFilter/BoolFilter.PNG)
 
 </br>
 
