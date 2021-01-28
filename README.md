@@ -39,7 +39,7 @@ The prerequisite is that a 1:n or m:n relationship exists in the data model.
 </br></br>
 
 **Known Limitation**
-- User support to enter the query is limited.
+- Limited user support for enterint the boolean query. Currently a plain input field is available.
 
 
 
