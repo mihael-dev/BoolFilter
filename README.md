@@ -1,7 +1,7 @@
 # BoolFilter
 
 
-This Qlik Sense Extension enables a business user to apply more complex selection on a field. 
+This Qlik Sense Extension enables users to apply a boolean expression as selection on a field. 
 The prerequisite is that a 1:n or m:n relationship exists in the data model.
 
 Example use case:
@@ -9,7 +9,7 @@ Example use case:
 - select all patients that had treatment A OR (B AND C AND NOT D)  
 
 
-The entered Boolean expression is transformed to a Qlik search expression and applied as selection. 
+The entered boolean expression is transformed to a Qlik search expression and applied as selection. 
 
 </br>
 
