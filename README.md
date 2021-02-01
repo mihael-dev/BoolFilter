@@ -23,11 +23,11 @@ The entered boolean expression is transformed to a Qlik search expression and ap
 
   - "Selection field name": Field name for the selection
 
-  - "Search field name": Field name with the attributes used in the boolean expression
+  - "Search field name": Field name with the attribute values used in the boolean expression
 
   - "Input field titel": Label of the input field in the UI
 
-  - "Search string placeholder": Placeholder in the input field that support the user 
+  - "Search string placeholder": Placeholder in the input field that supports the user 
 
   - "Operator AND": (default: *): Operater can be changed
 
